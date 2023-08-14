@@ -2,6 +2,8 @@
   "compilerOptions": {
     "paths": {
       "@/*": ["./*"],
+      "helper": ["./src/helper"],
+      "utils/*": ["./src/utils/*"],
       "components/*": ["./src/components/*"]
     }
   }

@@ -5,6 +5,13 @@ const screens = () => {
   });
   return _screens;
 };
+const width = () => {
+  const _screens = {};
+  Array.from(Array(2000).keys()).forEach((i) => {
+    _screens[`${i + 1}`] = `${i + 1}px`;
+  });
+  return _screens;
+};
 const zIndex = () => {
   const _screens = {};
   Array.from(Array(10000).keys()).forEach((i) => {
@@ -1935,7 +1942,7 @@ module.exports = {
     },
     height: ({ theme }) => ({
       auto: 'auto',
-      ...theme('spacing'),
+      ...width(),
       '1/2': '50%',
       '1/3': '33.333333%',
       '2/3': '66.666667%',
@@ -2052,6 +2059,7 @@ module.exports = {
       none: 'none',
       ...theme('spacing'),
       full: '100%',
+      screen: '100vh',
       min: 'min-content',
       max: 'max-content',
       fit: 'fit-content',
@@ -2287,7 +2295,7 @@ module.exports = {
       none: 'none',
       all: 'all',
       DEFAULT:
-          'color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter',
+        'color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter',
       colors: 'color, background-color, border-color, text-decoration-color, fill, stroke',
       opacity: 'opacity',
       shadow: 'box-shadow',
@@ -2320,7 +2328,7 @@ module.exports = {
     }),
     width: ({ theme }) => ({
       auto: 'auto',
-      ...theme('spacing'),
+      ...width(),
       '1/2': '50%',
       '1/3': '33.333333%',
       '2/3': '66.666667%',
