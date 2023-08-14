@@ -65,6 +65,7 @@ function Lamp(props) {
         data_url: image.data_url,
       },
       lamp_id: _.result(main, '_id', ''),
+      email: _.result(session, 'user.email', ''),
     });
     if (_.result(upload, 'data.success', false)) {
       const data = await ListAPI.getLamp(router.query.lamp);
