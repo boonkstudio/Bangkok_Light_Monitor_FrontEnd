@@ -17,7 +17,7 @@ import { useRouter } from 'next/router';
 import { signOut, useSession } from 'next-auth/react';
 
 function ListComponent(props) {
-  const { list, main } = props;
+  const { list, main, Component = () => <></> } = props;
   const router = useRouter();
   const { data: session } = useSession();
 
@@ -53,8 +53,10 @@ function ListComponent(props) {
         </Toolbar>
       </AppBar>
       <div className="flex flex-col h-full w-full overflow-scroll">
-        <List>
-          {list.map((item) => {
+        <Component />
+
+        <List className="pt-0">
+          {(list ?? []).map((item) => {
             return (
               <nav key={item._id}>
                 <ListItem

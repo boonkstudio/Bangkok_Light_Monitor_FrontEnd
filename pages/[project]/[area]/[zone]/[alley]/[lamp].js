@@ -117,12 +117,12 @@ function Lamp(props) {
             dragProps,
           }) => (
             // write your building UI
-            <div className="flex flex-col  w-full h-400 items-center ">
-              <div className="flex w-fill h-350 min-h-300 border-2">
+            <div className="flex flex-col  w-full h-fit items-center ">
+              <div className="flex w-fill  border-2">
                 {imageList.map((image, index) => (
                   <div
                     key={index}
-                    className="flex flex-col justify-between items-center p-4 w-full h-345"
+                    className="flex flex-col justify-between items-center p-4 w-full h-fit"
                   >
                     <Image
                       src={image.data_url}
@@ -158,13 +158,14 @@ function Lamp(props) {
               </div>
 
               <Button
+                className={imageList.length > 0 ? 'hidden' : ''}
                 variant="contained"
                 color="info"
                 style={isDragging ? { color: 'red' } : null}
                 onClick={onImageUpload}
                 {...dragProps}
               >
-                Select images
+                upload images
               </Button>
             </div>
           )}
