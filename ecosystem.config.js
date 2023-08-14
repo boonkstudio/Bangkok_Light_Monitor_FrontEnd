@@ -25,7 +25,7 @@ module.exports = {
     {
       name: 'BLMF',
       script: 'node_modules/next/dist/bin/next',
-      args: 'start',
+      args: 'start -p 3210',
       instances: RUN_ENV_MAP[argEnv].instances,
       exec_mode: 'cluster',
       watch: false,
