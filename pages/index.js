@@ -14,6 +14,7 @@ import _ from 'lodash';
 import { useRouter } from 'next/router';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
+import React from 'react';
 
 export const getServerSideProps = async (context) => {
   const list = await ListAPI.getListProjects();
@@ -30,46 +31,68 @@ export default function Home(props) {
   const { data: session } = useSession();
 
   return !session ? (
-    <div className="flex flex-col items-center justify-center h-full px-10">
-      <div className="flex flex-col items-center">
-        <Image
-          src="/bongkok.png"
-          alt=""
-          width={300}
-          height={300}
-          style={{
-            width: 200,
-            // width: '100%',
-            height: '100%',
-            objectFit: 'contain',
-          }}
-        />
-        <Image
-          src="/logo.webp"
-          alt=""
-          width={1024}
-          height={273}
-          objectFit="contain"
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'contain',
-          }}
-        />
-      </div>
-      <Button
-        variant="outlined"
-        onClick={() => signIn()}
-        className="rounded-32 px-30 border-onhome text-onhome"
+    <div className="flex flex-col w-full">
+      <AppBar
+        position="static"
+        style={{
+          borderRadius: '0px 0px 30px 30px',
+          backgroundColor: '#fff',
+        }}
       >
-        Sign in
-      </Button>
+        <Toolbar>
+          <Typography className="w-full py-10" variant="h6" align="center" color="black">
+            LEDONHOME Bangkok Light Monitor
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <div className="flex flex-col items-center justify-center  w-full h-full px-10">
+        <div className="flex flex-col items-center">
+          <Image
+            src="/bongkok.png"
+            alt=""
+            width={300}
+            height={300}
+            style={{
+              width: 200,
+              // width: '100%',
+              height: '100%',
+              maxWidth: '300px',
+              objectFit: 'contain',
+            }}
+          />
+          <Image
+            src="/logo.webp"
+            alt=""
+            width={1024}
+            height={273}
+            objectFit="contain"
+            style={{
+              width: '100%',
+              maxWidth: '300px',
+              height: '100%',
+              objectFit: 'contain',
+            }}
+          />
+        </div>
+        <Button
+          variant="outlined"
+          onClick={() => signIn()}
+          className="rounded-32 px-30 border-onhome text-onhome"
+        >
+          Sign in
+        </Button>
+      </div>
     </div>
   ) : (
     <main className="flex flex-col h-screen w-full">
-      <AppBar position="static">
+      <AppBar
+        position="static"
+        style={{
+          borderRadius: '0px 0px 30px 30px',
+        }}
+      >
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography fontWeight="bold" component="div" sx={{ flexGrow: 1 }}>
             LEDONHOME Bangkok Light Monitor
           </Typography>
           {session && (

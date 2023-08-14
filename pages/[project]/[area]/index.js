@@ -18,7 +18,7 @@ export const getServerSideProps = async (context) => {
 function Page(props) {
   const { list, main } = props;
   const { data: session } = useSession();
-  return <List list={list} maiwn={main} />;
+  return <List list={list} main={main} />;
 }
 export default Page;
 Page.auth = true;

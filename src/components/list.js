@@ -23,7 +23,12 @@ function ListComponent(props) {
 
   return (
     <main className="flex flex-col h-screen w-full">
-      <AppBar position="static">
+      <AppBar
+        position="static"
+        style={{
+          borderRadius: '0px 0px 30px 30px',
+        }}
+      >
         <Toolbar>
           <IconButton
             size="large"
@@ -37,11 +42,11 @@ function ListComponent(props) {
           >
             <ArrowBack />
           </IconButton>
-          <Typography className="w-full py-10" align="center">
+          <Typography className="w-full py-10" align="center" fontWeight="bold">
             {_.result(main, 'name', 'untitle')}
           </Typography>
           {session && (
-            <Button color="inherit" onClick={() => signOut()}>
+            <Button color="inherit" onClick={() => signOut()} className="truncate">
               Sign out
             </Button>
           )}

@@ -23,6 +23,7 @@ import { ArrowBack, CloseRounded } from '@mui/icons-material';
 import UploadAPI from 'utils/api/UploadAPI';
 import { useSession } from 'next-auth/react';
 import LohGoogleImage from 'components/LohGoogleImage';
+import { LoadingButton } from '@mui/lab';
 
 export const getServerSideProps = async (context) => {
   const { lamp } = context.query;
@@ -44,6 +45,7 @@ function Lamp(props) {
   const [lamps, setLamps] = useState(list ?? []);
   const [open, setOpen] = useState(false);
   const [image, setImage] = useState({});
+  const [loading, setLoading] = useState(false);
   const toggle = (item) => {
     setImage(item);
     try {
@@ -56,6 +58,7 @@ function Lamp(props) {
     setImages(imageList);
   };
   const onClickUpload = async (image) => {
+    setLoading(true);
     const upload = await UploadAPI.uploadImage({
       image: {
         type: image.file.type,
@@ -67,10 +70,16 @@ function Lamp(props) {
       const data = await ListAPI.getLamp(router.query.lamp);
       setLamps(_.result(data, 'list', []));
     }
+    setLoading(false);
   };
   return (
     <div className="flex flex-col h-screen w-full">
-      <AppBar position="static">
+      <AppBar
+        position="static"
+        style={{
+          borderRadius: '0px 0px 30px 30px',
+        }}
+      >
         <Toolbar>
           <IconButton
             size="large"
@@ -122,7 +131,8 @@ function Lamp(props) {
                       className="object-contain h-300"
                     />
                     <div className="flex flex-row justify-around p-4">
-                      <Button
+                      <LoadingButton
+                        loading={loading}
                         className="mr-4"
                         variant="outlined"
                         color="primary"
@@ -132,14 +142,15 @@ function Lamp(props) {
                         }}
                       >
                         Update
-                      </Button>
-                      <Button
+                      </LoadingButton>
+                      <LoadingButton
+                        loading={loading}
                         variant="outlined"
-                        color="secondary"
+                        color="error"
                         onClick={() => onImageRemove(index)}
                       >
                         Remove
-                      </Button>
+                      </LoadingButton>
                     </div>
                   </div>
                 ))}
